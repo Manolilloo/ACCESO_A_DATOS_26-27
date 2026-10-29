@@ -1,13 +1,14 @@
 import java.util.Scanner;
 
 /**
+ * Punto de entrada de la actividad 1.2.
+ *
  * @author ManuelPerez
  * @version 1.0
  */
-
 public class Main {
-    static void main(String[] args) {
 
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
 
@@ -19,11 +20,7 @@ public class Main {
             System.out.println("4. Borrar un coche por matrícula");
             System.out.println("5. Modificar un coche por matrícula");
             System.out.println("6. Exportar a JSON");
-            System.out.println("   1. Exportar concesionario completo");
-            System.out.println("   2. Exportar un coche por matrícula");
             System.out.println("7. Importar desde JSON");
-            System.out.println("   1. Importar concesionario completo");
-            System.out.println("   2. Importar un coche");
             System.out.println("8. Generar informe resumen");
             System.out.println("0. Salir");
             System.out.print("Selecciona una opción: ");
@@ -90,7 +87,6 @@ public class Main {
                 default:
                     System.out.println("Opción no válida. Inténtalo de nuevo.");
             }
-
         } while (opcion != 0);
 
         sc.close();
