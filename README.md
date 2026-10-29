@@ -1,25 +1,34 @@
 # Acceso a Datos 2026-2027
 
-Repositorio para organizar los proyectos y actividades del módulo de Acceso a Datos.
+Repositorio de actividades del módulo de Acceso a Datos.
 
-## Proyectos
+## Estructura
 
-Cada actividad debe guardarse en su propia carpeta en la raíz del repositorio. Dentro de cada carpeta, conserva la estructura completa del proyecto de IntelliJ, incluido su `pom.xml`, `src`, recursos y archivos de configuración necesarios.
+Cada actividad es un módulo Maven independiente, con su propio `pom.xml`, código fuente y recursos.
 
-Ejemplo:
+- `ACT1_1_ManejoFicheros`: actividad 1.1.
+- `ACT1_2_Manejo_complejo_de_ficheros_con_JAXB_y_Jackson_JSON`: actividad 1.2.
 
-```text
-ACCESO_A_DATOS_26-27/
-├── .gitignore
-├── README.md
-├── AD1.1-Nombre-Actividad/
-│   ├── pom.xml
-│   └── src/
-└── AD1.2-Nombre-Actividad/
-    ├── pom.xml
-    └── src/
-```
+El `pom.xml` de la raíz agrupa los módulos para que IntelliJ pueda detectarlos todos, pero cada actividad mantiene su propia configuración y se puede abrir y ejecutar por separado.
 
-## Git ignore
+## Abrir en IntelliJ
 
-Se ignoran las carpetas de configuración local de IntelliJ (`.idea`), archivos `.iml`, resultados de compilación y otras carpetas generadas. No se ignoran los archivos de código, `pom.xml` ni los recursos necesarios para ejecutar las actividades.
+**Para cargar todas las actividades en una misma ventana:**
+
+1. Abre la carpeta raíz `ACCESO_A_DATOS_26-27` usando `File → Open`.
+2. Cuando IntelliJ pregunte, selecciona abrir como proyecto.
+3. En la ventana Maven, pulsa `Reload All Maven Projects`.
+4. Configura un JDK 21 en `File → Project Structure → Project → SDK`.
+
+**Para trabajar únicamente en una actividad:**
+
+Abre directamente la carpeta de esa actividad, la que contiene su propio `pom.xml`. También puedes abrir su `pom.xml` como proyecto Maven.
+
+## Ejecutar
+
+- Actividad 1.2: ejecuta la clase `Main`, situada en `src/main/java/Main.java`.
+- Actividad 1.1: su clase actual `GestorCoches` todavía no contiene un método `main()`. Maven puede reconocer y compilar el módulo, pero tendrás que añadir el punto de entrada de la actividad para ejecutarla como aplicación.
+
+## Archivos ignorados
+
+El `.gitignore` raíz excluye la configuración local de IntelliJ (`.idea/` y `*.iml`), los resultados de compilación (`target/`, `out/`, `build/`) y otros archivos generados. No excluye los archivos Java, los `pom.xml` ni los recursos de las actividades.
