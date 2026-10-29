@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>es.manolillo.accesodatos</groupId>
+        <artifactId>ACCESO_A_DATOS_26-27</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>ACT1_1_ManejoFicheros</artifactId>
+    <packaging>jar</packaging>
+
+    <!-- Este proyecto usa src/GestorCoches.java en vez de src/main/java. -->
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+    </build>
+</project>
