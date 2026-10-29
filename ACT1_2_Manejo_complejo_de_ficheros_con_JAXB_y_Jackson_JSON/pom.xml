@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>ACT1_2_Manejo_complejo_de_ficheros_con_JAXB_y_Jackson_JSON</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <parent>
+        <groupId>es.manolillo.accesodatos</groupId>
+        <artifactId>ACCESO_A_DATOS_26-27</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
 
-    <properties>
-        <maven.compiler.source>27</maven.compiler.source>
-        <maven.compiler.target>27</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <artifactId>ACT1_2_Manejo_complejo_de_ficheros_con_JAXB_y_Jackson_JSON</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <!-- API de Jakarta XML Binding -->
@@ -21,12 +21,19 @@
             <artifactId>jakarta.xml.bind-api</artifactId>
             <version>4.0.0</version>
         </dependency>
-        <!-- Implementación Runtime GlassFish -->
+
+        <!-- Implementación de JAXB en tiempo de ejecución -->
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
             <version>4.0.2</version>
         </dependency>
-    </dependencies>
 
+        <!-- Serialización y lectura de JSON -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.18.3</version>
+        </dependency>
+    </dependencies>
 </project>
