@@ -1,0 +1,17 @@
+# IntelliJ IDEA (configuración local)
+.idea/
+*.iml
+
+# Archivos generados por Java / Maven / Gradle
+target/
+out/
+build/
+.gradle/
+*.class
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
