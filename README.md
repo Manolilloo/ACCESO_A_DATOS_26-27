@@ -17,7 +17,7 @@
   </p>
 
   <p>
-    <a href="#-contenido">Contenido</a> &nbsp;·&nbsp;
+    <a href="#sobre-el-repositorio">Sobre el repositorio</a> &nbsp;·&nbsp;
     <a href="#-actividades">Actividades</a> &nbsp;·&nbsp;
     <a href="#-puesta-en-marcha">Puesta en marcha</a> &nbsp;·&nbsp;
     <a href="#-estructura">Estructura</a>
@@ -27,13 +27,13 @@
 
 ---
 
-## ◈ Sobre el repositorio
+## Sobre el repositorio
 
 Este repositorio reúne el trabajo práctico del módulo de **Acceso a Datos**. Cada actividad se organiza como un módulo Maven independiente, con su propio código fuente, configuración y recursos.
 
 La idea es mantener un espacio limpio, ordenado y fácil de ampliar durante el curso: cada proyecto conserva su autonomía sin perder la visión global de la asignatura.
 
-## ▸ Actividades
+## Actividades
 
 | Módulo | Proyecto | Tecnologías y contenido |
 |:--:|---|---|
@@ -42,7 +42,7 @@ La idea es mantener un espacio limpio, ordenado y fácil de ampliar durante el c
 
 > Nuevas actividades se incorporarán como módulos independientes, manteniendo esta misma organización.
 
-## ◈ Estructura
+## Estructura
 
 La raíz del repositorio contiene un **POM agregador** que permite cargar todos los módulos desde IntelliJ IDEA. Cada actividad mantiene, además, su propio `pom.xml`.
 
@@ -74,7 +74,7 @@ ACCESO_A_DATOS_26-27/
                 └── config.properties
 ```
 
-## ⌘ Puesta en marcha
+## Puesta en marcha
 
 ### Requisitos
 
@@ -118,7 +118,7 @@ mvn -pl ACT1_1_ManejoFicheros clean package
 mvn -pl ACT1_2_Manejo_complejo_de_ficheros_con_JAXB_y_Jackson_JSON clean package
 ```
 
-## ◈ Criterios de organización
+## Criterios de organización
 
 - **Independencia:** cada actividad tiene su propio POM y sus propias dependencias.
 - **Orden:** el código y los recursos permanecen dentro de la carpeta de su actividad.
