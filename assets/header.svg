@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Acceso a Datos 2026-2027</title>
+  <desc id="desc">Banner oscuro con gradientes azul y violeta para el repositorio académico de proyectos de Acceso a Datos.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090D1B"/>
+      <stop offset=".55" stop-color="#11152B"/>
+      <stop offset="1" stop-color="#17102B"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#65E4F3"/>
+      <stop offset=".52" stop-color="#8B8CFF"/>
+      <stop offset="1" stop-color="#C18BFF"/>
+    </linearGradient>
+    <radialGradient id="glowA">
+      <stop offset="0" stop-color="#4B8DFF" stop-opacity=".30"/>
+      <stop offset="1" stop-color="#4B8DFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB">
+      <stop offset="0" stop-color="#A855F7" stop-opacity=".24"/>
+      <stop offset="1" stop-color="#A855F7" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#A6B7E8" stroke-opacity=".075" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="360" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="360" rx="28" fill="url(#grid)"/>
+  <circle cx="960" cy="105" r="310" fill="url(#glowA)"/>
+  <circle cx="1120" cy="310" r="250" fill="url(#glowB)"/>
+  <path d="M0 292C210 246 310 335 520 290S850 222 1200 268" fill="none" stroke="url(#accent)" stroke-opacity=".16" stroke-width="1.5"/>
+  <path d="M0 310C220 264 340 350 570 307S900 245 1200 290" fill="none" stroke="url(#accent)" stroke-opacity=".10" stroke-width="1"/>
+  <rect x="72" y="58" width="4" height="28" rx="2" fill="url(#accent)"/>
+  <text x="94" y="77" fill="#A9B7D7" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="3.2">CUADERNO DE PROYECTOS  /  2026—27</text>
+  <text x="72" y="165" fill="#F5F7FF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="62" font-weight="800" letter-spacing="-2.2">ACCESO A DATOS</text>
+  <rect x="74" y="190" width="390" height="3" rx="1.5" fill="url(#accent)"/>
+  <text x="74" y="232" fill="#B7C2DF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="20" font-weight="500" letter-spacing=".4">Java · Ficheros · XML · JSON · Persistencia</text>
+  <text x="74" y="282" fill="#7887AB" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="600" letter-spacing="2">IES  /  DESARROLLO DE APLICACIONES</text>
+  <g transform="translate(850 82)">
+    <rect width="270" height="196" rx="20" fill="#111A32" fill-opacity=".72" stroke="#7085C7" stroke-opacity=".28"/>
+    <rect x="22" y="22" width="226" height="32" rx="8" fill="#202B4A"/>
+    <circle cx="40" cy="38" r="4" fill="#68E1ED"/>
+    <circle cx="55" cy="38" r="4" fill="#9295FF"/>
+    <circle cx="70" cy="38" r="4" fill="#C18BFF"/>
+    <path d="M28 82h78M28 101h122M28 120h98M28 139h143" stroke="#8293BD" stroke-opacity=".48" stroke-width="5" stroke-linecap="round"/>
+    <path d="M192 80l20 20-20 20M183 135h42" fill="none" stroke="url(#accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="28" y="174" fill="#91A2C7" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="12" letter-spacing="1.4">BUILD  /  LEARN  /  REPEAT</text>
+  </g>
+  <text x="1124" y="326" fill="#7180A6" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" text-anchor="end" letter-spacing="2">MANOLILLO</text>
+</svg>
