@@ -49,7 +49,7 @@ public class InformeService {
             escritor.newLine();
 
             // Número total de coches
-            escritor.write("Total de coches: " + (coches.size() + 1));
+            escritor.write("Total de coches: " + (coches.size()));
             escritor.newLine();
             escritor.newLine();
 
