@@ -1,7 +1,6 @@
 package model;
 
 import jakarta.xml.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class Coche {
         this.matriculaCoche = matriculaCoche;
         this.marcaCoche = marca;
         this.modeloCoche = modelo;
-        this.extrasCoche = extras;
+        this.extrasCoche = extras != null ? extras : new ArrayList<>();
     }
 
     public int getId() {
@@ -70,10 +69,13 @@ public class Coche {
     }
 
     public List<String> getExtrasCoche() {
+        if (extrasCoche == null) {
+            extrasCoche = new ArrayList<>();
+        }
         return extrasCoche;
     }
 
     public void setExtrasCoche(List<String> extrasCoche) {
-        this.extrasCoche = extrasCoche;
+        this.extrasCoche = extrasCoche != null ? extrasCoche : new ArrayList<>();
     }
 }

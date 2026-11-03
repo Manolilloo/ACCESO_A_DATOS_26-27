@@ -1,4 +1,4 @@
-<div align="center">
+ <div align="center">
 
   <img src="assets/header.svg" alt="Acceso a Datos · Proyectos 2026–2027" width="100%" />
 
@@ -18,9 +18,9 @@
 
   <p>
     <a href="#sobre-el-repositorio">Sobre el repositorio</a> &nbsp;·&nbsp;
-    <a href="#-actividades">Actividades</a> &nbsp;·&nbsp;
-    <a href="#-puesta-en-marcha">Puesta en marcha</a> &nbsp;·&nbsp;
-    <a href="#-estructura">Estructura</a>
+    <a href="#actividades">Actividades</a> &nbsp;·&nbsp;
+    <a href="#puesta-en-marcha">Puesta en marcha</a> &nbsp;·&nbsp;
+    <a href="#estructura">Estructura</a>
   </p>
 
 </div>
@@ -49,27 +49,40 @@ La raíz del repositorio contiene un **POM agregador** que permite cargar todos 
 ```text
 ACCESO_A_DATOS_26-27/
 │
-├── pom.xml                                  # POM principal / agregador
+├── pom.xml
 ├── README.md
 ├── .gitignore
 ├── assets/
 │   └── header.svg
 │
 ├── ACT1_1_ManejoFicheros/
-│   ├── pom.xml                              # Proyecto Maven independiente
+│   ├── pom.xml
 │   ├── src/
 │   ├── BBDD Coches.csv
 │   └── coches.dat
 │
 └── ACT1_2_Manejo_complejo_de_ficheros_con_JAXB_y_Jackson_JSON/
-    ├── pom.xml                              # Proyecto Maven independiente
+    ├── pom.xml
     ├── concesionario_plantilla.xml
+    ├── datos/
+    │   ├── BBDDejemplo.csv
+    │   └── concesionario.xml
     └── src/
         └── main/
             ├── java/
-            │   ├── Main.java
+            │   ├── principal/
+            │   │   └── Main.java
             │   ├── model/
-            │   └── Service/
+            │   │   ├── Coche.java
+            │   │   └── Concesionario.java
+            │   ├── service/
+            │   │   ├── ConcesionarioService.java
+            │   │   ├── XmlService.java
+            │   │   ├── CsvService.java
+            │   │   ├── JsonService.java
+            │   │   └── InformeService.java
+            │   └── config/
+            │       └── Configuracion.java
             └── resources/
                 └── config.properties
 ```

@@ -1,13 +1,20 @@
+package principal;
+
 import java.util.Scanner;
 
 /**
- * Punto de entrada de la actividad 1.2.
+ * Clase principal de la aplicación. Muestra el menú y recibe las opciones del usuario.
  *
  * @author ManuelPerez
  * @version 1.0
  */
 public class Main {
 
+    /**
+     * Inicia la aplicación y muestra el menú principal.
+     *
+     * @param args argumentos recibidos al ejecutar el programa
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
