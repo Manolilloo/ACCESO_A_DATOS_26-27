@@ -1,12 +1,6 @@
 package model;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlElementWrapper;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlType;
-
+import jakarta.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,32 +13,21 @@ public class Concesionario {
     @XmlElement(name = "coche")
     private List<Coche> coches = new ArrayList<>();
 
-    /**
-     * Constructor vacío necesario para JAXB.
-     */
     public Concesionario() {
     }
 
-    /**
-     * Crea un concesionario con una lista de coches.
-     */
     public Concesionario(List<Coche> coches) {
-        if (coches != null) {
-            this.coches = coches;
-        }
+        this.coches = coches != null ? coches : new ArrayList<>();
     }
 
-    /** Devuelve la lista de coches. */
     public List<Coche> getCoches() {
+        if (coches == null) {
+            coches = new ArrayList<>();
+        }
         return coches;
     }
 
-    /** Cambia la lista de coches. */
     public void setCoches(List<Coche> coches) {
-        if (coches != null) {
-            this.coches = coches;
-        } else {
-            this.coches = new ArrayList<>();
-        }
+        this.coches = coches != null ? coches : new ArrayList<>();
     }
 }
