@@ -4,6 +4,7 @@ import config.Configuracion;
 import model.Coche;
 import model.Concesionario;
 import service.ConcesionarioService;
+import service.CsvService;
 import service.XmlService;
 
 import java.util.ArrayList;
@@ -34,6 +35,8 @@ public class Main {
             ConcesionarioService servicio =
                     new ConcesionarioService(concesionario, xmlService);
 
+            CsvService csvService = new CsvService(configuracion, servicio);
+
             System.out.println("Concesionario cargado correctamente.");
 
             do {
@@ -57,7 +60,8 @@ public class Main {
                     switch (opcion) {
 
                         case 1:
-                            System.out.println("Esta opción todavía no está conectada.");
+                            int cantidad = csvService.importarCSV();
+                            System.out.println("Coches importados: " + cantidad);
                             break;
 
                         case 2:
