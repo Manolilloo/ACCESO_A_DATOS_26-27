@@ -136,4 +136,16 @@ public class ConcesionarioService {
 
         xmlService.guardarConcesionario(concesionario);
     }
+
+    /**
+     * Sustituye los coches actuales por los de otro concesionario.
+     *
+     * @param nuevo concesionario que se quiere importar
+     * @throws JAXBException si ocurre un error al guardar el XML
+     */
+    public void reemplazarConcesionario(Concesionario nuevo) throws JAXBException {
+        concesionario.setCoches(nuevo.getCoches());
+        xmlService.guardarConcesionario(concesionario);
+    }
+
 }

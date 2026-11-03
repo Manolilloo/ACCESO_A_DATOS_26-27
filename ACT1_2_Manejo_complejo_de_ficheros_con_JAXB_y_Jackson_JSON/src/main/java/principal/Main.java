@@ -5,6 +5,7 @@ import model.Coche;
 import model.Concesionario;
 import service.ConcesionarioService;
 import service.CsvService;
+import service.JsonService;
 import service.XmlService;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class Main {
                     new ConcesionarioService(concesionario, xmlService);
 
             CsvService csvService = new CsvService(configuracion, servicio);
+            JsonService jsonService = new JsonService(configuracion);
 
             System.out.println("Concesionario cargado correctamente.");
 
@@ -82,11 +84,11 @@ public class Main {
                             break;
 
                         case 6:
-                            System.out.println("Esta opción todavía no está conectada.");
+                            exportarJSON(sc, jsonService, concesionario, servicio);
                             break;
 
                         case 7:
-                            System.out.println("Esta opción todavía no está conectada.");
+                            importarJSON(sc, jsonService, servicio);
                             break;
 
                         case 8:
@@ -232,4 +234,86 @@ public class Main {
 
         return extras;
     }
+
+    /**
+     * Muestra las opciones para exportar datos a JSON.
+     */
+    private static void exportarJSON(Scanner sc, JsonService jsonService,
+                                     Concesionario concesionario,
+                                     ConcesionarioService servicio) throws Exception {
+
+        System.out.println("1. Exportar concesionario completo");
+        System.out.println("2. Exportar un coche por matrícula");
+        System.out.print("Selecciona una opción: ");
+
+        int opcion = Integer.parseInt(sc.nextLine());
+
+        switch (opcion) {
+
+            case 1:
+                jsonService.exportarConcesionario(concesionario);
+                System.out.println("Concesionario exportado correctamente.");
+                break;
+
+            case 2:
+                System.out.print("Matrícula del coche: ");
+                String matricula = sc.nextLine().trim();
+
+                Coche coche = servicio.buscarCoche(matricula);
+
+                if (coche == null) {
+                    System.out.println("No se ha encontrado ese coche.");
+                } else {
+                    jsonService.exportarCoche(coche);
+                    System.out.println("Coche exportado correctamente.");
+                }
+                break;
+
+            default:
+                System.out.println("Opción no válida.");
+        }
+    }
+
+    /**
+     * Muestra las opciones para importar datos desde JSON.
+     */
+    private static void importarJSON(Scanner sc, JsonService jsonService,
+                                     ConcesionarioService servicio) throws Exception {
+
+        System.out.println("1. Importar concesionario completo");
+        System.out.println("2. Importar un coche");
+        System.out.print("Selecciona una opción: ");
+
+        int opcion = Integer.parseInt(sc.nextLine());
+
+        switch (opcion) {
+
+            case 1:
+                Concesionario nuevo = jsonService.importarConcesionario();
+
+                if (nuevo == null) {
+                    System.out.println("El archivo JSON está vacío.");
+                } else {
+                    servicio.reemplazarConcesionario(nuevo);
+                    System.out.println("Concesionario importado correctamente.");
+                }
+                break;
+
+            case 2:
+                Coche coche = jsonService.importarCoche();
+
+                if (coche == null) {
+                    System.out.println("No se ha encontrado ningún coche en el JSON.");
+                } else if (servicio.insertarCoche(coche)) {
+                    System.out.println("Coche importado correctamente.");
+                } else {
+                    System.out.println("Ya existe un coche con esa matrícula.");
+                }
+                break;
+
+            default:
+                System.out.println("Opción no válida.");
+        }
+    }
+
 }
