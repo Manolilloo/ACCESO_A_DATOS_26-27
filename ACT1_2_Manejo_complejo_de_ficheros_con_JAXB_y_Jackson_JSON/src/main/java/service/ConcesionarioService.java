@@ -32,8 +32,13 @@ public class ConcesionarioService {
      * @return coche encontrado o null si no existe
      */
     public Coche buscarCoche(String matricula) {
+        if (matricula == null || matricula.trim().isEmpty()) {
+            return null;
+        }
+
         for (Coche coche : concesionario.getCoches()) {
-            if (coche.getMatriculaCoche().equalsIgnoreCase(matricula)) {
+            if (coche != null && coche.getMatriculaCoche() != null
+                    && coche.getMatriculaCoche().equalsIgnoreCase(matricula.trim())) {
                 return coche;
             }
         }
@@ -46,8 +51,11 @@ public class ConcesionarioService {
      * @param coche coche que se quiere insertar
      * @return true si se ha insertado, false si ya existe
      * @throws JAXBException si ocurre un error al guardar el XML
+     * @throws IllegalArgumentException si el coche contiene datos obligatorios no válidos
      */
     public boolean insertarCoche(Coche coche) throws JAXBException {
+        validarCoche(coche);
+
         if (buscarCoche(coche.getMatriculaCoche()) != null) {
             return false;
         }
@@ -96,6 +104,7 @@ public class ConcesionarioService {
      * @param extras nueva lista de extras
      * @return true si se ha modificado, false si no existe
      * @throws JAXBException si ocurre un error al guardar el XML
+     * @throws IllegalArgumentException si la marca o el modelo están vacíos
      */
     public boolean modificarCoche(String matricula, String marca, String modelo,
                                   List<String> extras) throws JAXBException {
@@ -105,8 +114,13 @@ public class ConcesionarioService {
             return false;
         }
 
-        coche.setMarca(marca);
-        coche.setModelo(modelo);
+        if (marca == null || marca.trim().isEmpty()
+                || modelo == null || modelo.trim().isEmpty()) {
+            throw new IllegalArgumentException("La marca y el modelo no pueden estar vacíos.");
+        }
+
+        coche.setMarca(marca.trim());
+        coche.setModelo(modelo.trim());
         coche.setExtrasCoche(extras);
 
         xmlService.guardarConcesionario(concesionario);
@@ -142,10 +156,65 @@ public class ConcesionarioService {
      *
      * @param nuevo concesionario que se quiere importar
      * @throws JAXBException si ocurre un error al guardar el XML
+     * @throws IllegalArgumentException si hay coches incompletos o matrículas duplicadas
      */
     public void reemplazarConcesionario(Concesionario nuevo) throws JAXBException {
-        concesionario.setCoches(nuevo.getCoches());
+        if (nuevo == null) {
+            throw new IllegalArgumentException("El concesionario importado está vacío.");
+        }
+
+        List<Coche> cochesNuevos = nuevo.getCoches();
+
+        for (Coche coche : cochesNuevos) {
+            validarCoche(coche);
+        }
+
+        for (int i = 0; i < cochesNuevos.size(); i++) {
+            for (int j = i + 1; j < cochesNuevos.size(); j++) {
+                String matricula1 = cochesNuevos.get(i).getMatriculaCoche();
+                String matricula2 = cochesNuevos.get(j).getMatriculaCoche();
+
+                if (matricula1.equalsIgnoreCase(matricula2)) {
+                    throw new IllegalArgumentException(
+                            "El JSON contiene matrículas duplicadas: " + matricula1
+                    );
+                }
+            }
+        }
+
+        concesionario.setCoches(cochesNuevos);
         xmlService.guardarConcesionario(concesionario);
     }
 
+    /**
+     * Comprueba que un coche tenga todos los datos obligatorios.
+     *
+     * @param coche coche que se va a validar
+     * @throws IllegalArgumentException si falta algún dato obligatorio
+     */
+    private void validarCoche(Coche coche) {
+        if (coche == null) {
+            throw new IllegalArgumentException("El coche no puede estar vacío.");
+        }
+
+        if (coche.getMatriculaCoche() == null || coche.getMatriculaCoche().trim().isEmpty()) {
+            throw new IllegalArgumentException("La matrícula no puede estar vacía.");
+        }
+
+        if (coche.getMarca() == null || coche.getMarca().trim().isEmpty()) {
+            throw new IllegalArgumentException("La marca no puede estar vacía.");
+        }
+
+        if (coche.getModelo() == null || coche.getModelo().trim().isEmpty()) {
+            throw new IllegalArgumentException("El modelo no puede estar vacío.");
+        }
+
+        if (coche.getExtrasCoche() != null) {
+            for (String extra : coche.getExtrasCoche()) {
+                if (extra == null || extra.trim().isEmpty()) {
+                    throw new IllegalArgumentException("La lista de extras contiene un valor vacío.");
+                }
+            }
+        }
+    }
 }

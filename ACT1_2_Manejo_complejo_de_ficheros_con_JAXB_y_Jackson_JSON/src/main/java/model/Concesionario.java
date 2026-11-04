@@ -27,6 +27,8 @@ public class Concesionario {
 
     /**
      * Crea un concesionario con una lista de coches.
+     *
+     * @param coches lista de coches que tendrá el concesionario
      */
     public Concesionario(List<Coche> coches) {
         if (coches != null) {
@@ -34,12 +36,16 @@ public class Concesionario {
         }
     }
 
-    /** Devuelve la lista de coches. */
+    /** @return lista de coches del concesionario */
     public List<Coche> getCoches() {
         return coches;
     }
 
-    /** Cambia la lista de coches. */
+    /**
+     * Cambia la lista de coches del concesionario.
+     *
+     * @param coches nueva lista de coches
+     */
     public void setCoches(List<Coche> coches) {
         if (coches != null) {
             this.coches = coches;

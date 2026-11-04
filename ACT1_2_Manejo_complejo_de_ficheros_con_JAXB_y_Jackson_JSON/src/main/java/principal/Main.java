@@ -1,6 +1,8 @@
 package principal;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import config.Configuracion;
+import jakarta.xml.bind.JAXBException;
 import model.Coche;
 import model.Concesionario;
 import service.ConcesionarioService;
@@ -9,6 +11,8 @@ import service.JsonService;
 import service.InformeService;
 import service.XmlService;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -108,14 +112,31 @@ public class Main {
 
                 } catch (NumberFormatException e) {
                     System.out.println("Introduce un número válido.");
-                } catch (Exception e) {
-                    System.out.println("Error: " + e.getMessage());
+                } catch (FileNotFoundException e) {
+                    System.out.println("No se ha encontrado el archivo: " + e.getMessage());
+                } catch (JsonProcessingException e) {
+                    System.out.println("El archivo JSON no tiene un formato válido: "
+                            + e.getOriginalMessage());
+                } catch (JAXBException e) {
+                    System.out.println("Error al leer o guardar el XML: " + e.getMessage());
+                } catch (IOException e) {
+                    System.out.println("Error al leer o escribir un archivo: " + e.getMessage());
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Datos no válidos: " + e.getMessage());
+                } catch (IllegalStateException e) {
+                    System.out.println("Error en la configuración: " + e.getMessage());
                 }
 
             } while (opcion != 0);
 
-        } catch (Exception e) {
-            System.out.println("No se pudo iniciar el programa: " + e.getMessage());
+        } catch (FileNotFoundException e) {
+            System.out.println("No se ha encontrado un archivo necesario: " + e.getMessage());
+        } catch (JAXBException e) {
+            System.out.println("No se ha podido cargar el XML: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("No se ha podido leer la configuración o un archivo: " + e.getMessage());
+        } catch (IllegalStateException e) {
+            System.out.println("Error en la configuración: " + e.getMessage());
         }
 
         sc.close();
@@ -123,8 +144,12 @@ public class Main {
 
     /**
      * Pide los datos e inserta un coche nuevo.
+     *
+     * @param sc lector de datos introducidos por el usuario
+     * @param servicio servicio que gestiona el concesionario
+     * @throws JAXBException si ocurre un error al guardar el XML
      */
-    private static void insertarCoche(Scanner sc, ConcesionarioService servicio) throws Exception {
+    private static void insertarCoche(Scanner sc, ConcesionarioService servicio) throws JAXBException {
 
         System.out.print("Matrícula: ");
         String matricula = sc.nextLine().trim();
@@ -156,8 +181,12 @@ public class Main {
 
     /**
      * Busca y borra un coche por su matrícula.
+     *
+     * @param sc lector de datos introducidos por el usuario
+     * @param servicio servicio que gestiona el concesionario
+     * @throws JAXBException si ocurre un error al guardar el XML
      */
-    private static void borrarCoche(Scanner sc, ConcesionarioService servicio) throws Exception {
+    private static void borrarCoche(Scanner sc, ConcesionarioService servicio) throws JAXBException {
 
         System.out.print("Matrícula del coche que quieres borrar: ");
         String matricula = sc.nextLine().trim();
@@ -171,8 +200,12 @@ public class Main {
 
     /**
      * Modifica la marca, el modelo y los extras de un coche.
+     *
+     * @param sc lector de datos introducidos por el usuario
+     * @param servicio servicio que gestiona el concesionario
+     * @throws JAXBException si ocurre un error al guardar el XML
      */
-    private static void modificarCoche(Scanner sc, ConcesionarioService servicio) throws Exception {
+    private static void modificarCoche(Scanner sc, ConcesionarioService servicio) throws JAXBException {
 
         System.out.print("Matrícula del coche que quieres modificar: ");
         String matricula = sc.nextLine().trim();
@@ -213,13 +246,18 @@ public class Main {
             extras = leerExtras(textoExtras);
         }
 
-        servicio.modificarCoche(matricula, marca, modelo, extras);
-
-        System.out.println("Coche modificado correctamente.");
+        if (servicio.modificarCoche(matricula, marca, modelo, extras)) {
+            System.out.println("Coche modificado correctamente.");
+        } else {
+            System.out.println("No se ha encontrado ese coche.");
+        }
     }
 
     /**
      * Separa los extras introducidos por el usuario.
+     *
+     * @param texto texto con los extras separados por el carácter |
+     * @return lista de extras sin espacios innecesarios ni elementos vacíos
      */
     private static List<String> leerExtras(String texto) {
 
@@ -240,10 +278,16 @@ public class Main {
 
     /**
      * Muestra las opciones para exportar datos a JSON.
+     *
+     * @param sc lector de datos introducidos por el usuario
+     * @param jsonService servicio encargado de exportar los datos
+     * @param concesionario concesionario que se quiere exportar
+     * @param servicio servicio que permite buscar un coche por matrícula
+     * @throws IOException si ocurre un error al escribir el archivo JSON
      */
     private static void exportarJSON(Scanner sc, JsonService jsonService,
                                      Concesionario concesionario,
-                                     ConcesionarioService servicio) throws Exception {
+                                     ConcesionarioService servicio) throws IOException {
 
         System.out.println("1. Exportar concesionario completo");
         System.out.println("2. Exportar un coche por matrícula");
@@ -279,9 +323,15 @@ public class Main {
 
     /**
      * Muestra las opciones para importar datos desde JSON.
+     *
+     * @param sc lector de datos introducidos por el usuario
+     * @param jsonService servicio encargado de importar los datos
+     * @param servicio servicio que gestiona el concesionario
+     * @throws IOException si ocurre un error al leer el archivo JSON
+     * @throws JAXBException si ocurre un error al guardar el XML
      */
     private static void importarJSON(Scanner sc, JsonService jsonService,
-                                     ConcesionarioService servicio) throws Exception {
+                                     ConcesionarioService servicio) throws IOException, JAXBException {
 
         System.out.println("1. Importar concesionario completo");
         System.out.println("2. Importar un coche");

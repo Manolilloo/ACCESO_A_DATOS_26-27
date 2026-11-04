@@ -99,27 +99,27 @@ public class Configuracion {
         return archivo.getAbsolutePath();
     }
 
-    /** Devuelve la ruta absoluta del XML. */
+    /** @return ruta absoluta del XML */
     public String getRutaXML() {
         return obtenerRuta("xml.ruta");
     }
 
-    /** Devuelve la ruta absoluta del CSV. */
+    /** @return ruta absoluta del CSV */
     public String getRutaCSV() {
         return obtenerRuta("csv.ruta");
     }
 
-    /** Devuelve la ruta absoluta del JSON del concesionario. */
+    /** @return ruta absoluta del JSON del concesionario */
     public String getRutaJSONConcesionario() {
         return obtenerRuta("json.concesionario.ruta");
     }
 
-    /** Devuelve la ruta absoluta del JSON de un coche. */
+    /** @return ruta absoluta del JSON de un coche */
     public String getRutaJSONCoche() {
         return obtenerRuta("json.coche.ruta");
     }
 
-    /** Devuelve la ruta absoluta del informe. */
+    /** @return ruta absoluta del informe */
     public String getRutaInforme() {
         return obtenerRuta("informe.ruta");
     }
