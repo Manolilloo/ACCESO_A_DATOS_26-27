@@ -40,6 +40,12 @@ public class Coche {
 
     /**
      * Crea un coche con todos sus datos.
+     *
+     * @param id identificador del coche
+     * @param matriculaCoche matrícula del coche
+     * @param marca marca del vehículo
+     * @param modelo modelo del vehículo
+     * @param extras lista de extras del vehículo
      */
     public Coche(int id, String matriculaCoche, String marca, String modelo, List<String> extras) {
         this.id = id;
@@ -52,52 +58,72 @@ public class Coche {
         }
     }
 
-    /** Devuelve el identificador del coche. */
+    /** @return identificador del coche */
     public int getId() {
         return id;
     }
 
-    /** Cambia el identificador del coche. */
+    /**
+     * Cambia el identificador del coche.
+     *
+     * @param id nuevo identificador
+     */
     public void setId(int id) {
         this.id = id;
     }
 
-    /** Devuelve la matrícula. */
+    /** @return matrícula del coche */
     public String getMatriculaCoche() {
         return matriculaCoche;
     }
 
-    /** Cambia la matrícula. */
+    /**
+     * Cambia la matrícula.
+     *
+     * @param matriculaCoche nueva matrícula
+     */
     public void setMatriculaCoche(String matriculaCoche) {
         this.matriculaCoche = matriculaCoche;
     }
 
-    /** Devuelve la marca. */
+    /** @return marca del coche */
     public String getMarca() {
         return marcaCoche;
     }
 
-    /** Cambia la marca. */
+    /**
+     * Cambia la marca.
+     *
+     * @param marca nueva marca
+     */
     public void setMarca(String marca) {
         this.marcaCoche = marca;
     }
 
-    /** Devuelve el modelo. */
+    /** @return modelo del coche */
     public String getModelo() {
         return modeloCoche;
     }
 
-    /** Cambia el modelo. */
+    /**
+     * Cambia el modelo.
+     *
+     * @param modelo nuevo modelo
+     */
     public void setModelo(String modelo) {
         this.modeloCoche = modelo;
     }
 
-    /** Devuelve la lista de extras. */
+    /** @return lista de extras del coche */
     public List<String> getExtrasCoche() {
         return extrasCoche;
     }
 
-    /** Cambia la lista de extras. */
+    /**
+     * Cambia la lista de extras.
+     *
+     * @param extrasCoche nueva lista de extras
+     */
     public void setExtrasCoche(List<String> extrasCoche) {
         if (extrasCoche != null) {
             this.extrasCoche = extrasCoche;
