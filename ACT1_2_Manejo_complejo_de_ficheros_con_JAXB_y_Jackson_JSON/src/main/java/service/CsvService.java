@@ -35,7 +35,7 @@ public class CsvService {
      * Importa los coches del archivo CSV al concesionario.
      *
      * @return número de coches importados
-     * @throws IOException si ocurre un error al leer el archivo
+     * @throws IOException si ocurre un error al leer el archivo o hay datos incorrectos
      * @throws JAXBException si ocurre un error al guardar el XML
      */
     public int importarCSV() throws IOException, JAXBException {
@@ -79,7 +79,9 @@ public class CsvService {
                     String[] listaExtras = datos[3].split("\\|");
 
                     for (String extra : listaExtras) {
-                        extras.add(extra.trim());
+                        if (!extra.trim().isEmpty()) {
+                            extras.add(extra.trim());
+                        }
                     }
                 }
 
