@@ -6,6 +6,7 @@ import model.Concesionario;
 import service.ConcesionarioService;
 import service.CsvService;
 import service.JsonService;
+import service.InformeService;
 import service.XmlService;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class Main {
 
             CsvService csvService = new CsvService(configuracion, servicio);
             JsonService jsonService = new JsonService(configuracion);
+            InformeService informeService = new InformeService(configuracion);
 
             System.out.println("Concesionario cargado correctamente.");
 
@@ -92,7 +94,8 @@ public class Main {
                             break;
 
                         case 8:
-                            System.out.println("Esta opción todavía no está conectada.");
+                            informeService.generarInforme(concesionario);
+                            System.out.println("Informe generado correctamente.");
                             break;
 
                         case 0:
