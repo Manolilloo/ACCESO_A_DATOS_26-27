@@ -209,6 +209,10 @@ public class ConcesionarioService {
             throw new IllegalArgumentException("El modelo no puede estar vacío.");
         }
 
+        coche.setMatriculaCoche(coche.getMatriculaCoche().trim());
+        coche.setMarca(coche.getMarca().trim());
+        coche.setModelo(coche.getModelo().trim());
+
         if (coche.getExtrasCoche() != null) {
             for (String extra : coche.getExtrasCoche()) {
                 if (extra == null || extra.trim().isEmpty()) {
