@@ -49,11 +49,11 @@ public class InformeService {
             escritor.newLine();
 
             // Número total de coches
-            escritor.write("Total de coches: " + (coches.size()));
+            escritor.write("Total de coches: " + coches.size());
             escritor.newLine();
             escritor.newLine();
 
-            // Agrupar los coches por marca
+            // Agrupar los coches por marca sin distinguir mayúsculas y minúsculas
             escritor.write("COCHES AGRUPADOS POR MARCA");
             escritor.newLine();
             escritor.write("-------------------------");
@@ -64,8 +64,16 @@ public class InformeService {
             for (Coche coche : coches) {
 
                 String marca = coche.getMarca();
+                boolean yaProcesada = false;
 
-                if (!marcasProcesadas.contains(marca)) {
+                for (String marcaGuardada : marcasProcesadas) {
+                    if (marcaGuardada.equalsIgnoreCase(marca)) {
+                        yaProcesada = true;
+                        break;
+                    }
+                }
+
+                if (!yaProcesada) {
 
                     escritor.newLine();
                     escritor.write("Marca: " + marca);
