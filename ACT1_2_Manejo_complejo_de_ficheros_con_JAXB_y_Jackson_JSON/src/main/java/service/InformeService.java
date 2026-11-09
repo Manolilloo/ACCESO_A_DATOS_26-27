@@ -38,8 +38,7 @@ public class InformeService {
 
         File archivo = new File(configuracion.getRutaInforme());
 
-        try (BufferedWriter escritor = new BufferedWriter(
-                new FileWriter(archivo, StandardCharsets.UTF_8))) {
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo, StandardCharsets.UTF_8))) {
 
             List<Coche> coches = concesionario.getCoches();
 
@@ -81,8 +80,7 @@ public class InformeService {
 
                     for (Coche otroCoche : coches) {
                         if (otroCoche.getMarca().equalsIgnoreCase(marca)) {
-                            escritor.write("- " + otroCoche.getMatriculaCoche()
-                                    + " | " + otroCoche.getModelo());
+                            escritor.write("- " + otroCoche.getMatriculaCoche() + " | " + otroCoche.getModelo());
                             escritor.newLine();
                         }
                     }
